@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <title>rpacks project with Neovis.js </title>
+    <style type="text/css">
+        html, body {
+            font: 16pt arial;
+        }
+        #viz {
+            width: 900px;
+            height: 700px;
+            border: 1px solid lightgray;
+            font: 22pt arial;
+        }
+    </style>
+
+    <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+</head>
+    <script>
+    var viz;
+        function draw() {
+            var config = {
+                container_id: "viz",
+                server_url: "bolt://localhost:7687",
+                server_user: "neo4j",
+                server_password: "kra06kra",
+                labels:{
+                
+                },
+                relationships:{
+            
+                },
+//            initial_cypher: "MATCH (:Package)--(IMPORTS)-->(p:Package) RETURN p limit 50" 
+//            initial_cypher: "MATCH p=()-[r:VAL_OF]->() RETURN p LIMIT 250"
+//            initial_cypher: "MATCH p=()-[r:ARG_OF]->() RETURN p LIMIT 250"
+              initial_cypher: "MATCH (a:Argument)-[ARG_OF]->(m:Method)--(FROM_PACKAGE)-->(p:Package)--(DEPENDS)-->(p:Package) RETURN m,a,p LIMIT 250"
+            };
+            var viz = new NeoVis.default(config);
+            viz.render();
+        }
+    </script>
+
+<body onload="draw()">
+<div id="viz"></div>
+</body>
+</html>
