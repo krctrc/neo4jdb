@@ -19,20 +19,20 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-var driver = neo4j.driver('bolt://localhost',neo4j.auth.basic('neo4j','kra06kra'));
+var driver = neo4j.driver('bolt://localhost',neo4j.auth.basic('....','.......'));
 var session =driver.session();
 
 app.get('/', function(req,res){
     session
-        .run('MATCH (p:Package) RETURN p LIMIT 40')
+        .run('MATCH (p:P) RETURN p LIMIT 40')
         .then(function(result){
             var packagearr = [];
             result.records.forEach(function(record){
                 packagearr.push({
-                    name: record._fields[0].properties.name
-/*                  method: record._fields[0].properties.MethodId,
-                    value: record._fields[0].properties.ValueId,
-                    argument:record._fields[0].properties.ArgumentId
+                    name: record._fields[0].properties.n
+/*                  method: record._fields[0].properties.M,
+                    value: record._fields[0].properties.V,
+                    argument:record._fields[0].properties.A
 */
 });
             });
@@ -42,7 +42,7 @@ app.get('/', function(req,res){
         
         
         res.render('index', {
-            package:  packageearr
+            package:  packagearr
         });
     })
         .catch(function(err){
