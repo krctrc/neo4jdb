@@ -22,18 +22,18 @@
             var config = {
                 container_id: "viz",
                 server_url: "bolt://localhost:7687",
-                server_user: "neo4j",
-                server_password: "kra06kra",
+                server_user: ".....",
+                server_password: ".....",
                 labels:{
                 
                 },
                 relationships:{
             
                 },
-//            initial_cypher: "MATCH (:Package)--(IMPORTS)-->(p:Package) RETURN p limit 50" 
-//            initial_cypher: "MATCH p=()-[r:VAL_OF]->() RETURN p LIMIT 250"
-//            initial_cypher: "MATCH p=()-[r:ARG_OF]->() RETURN p LIMIT 250"
-              initial_cypher: "MATCH (a:Argument)-[ARG_OF]->(m:Method)--(FROM_PACKAGE)-->(p:Package)--(DEPENDS)-->(p:Package) RETURN m,a,p LIMIT 250"
+//            initial_cypher: "MATCH (:P)--(I)-->(p:P) RETURN p limit 50" 
+//            initial_cypher: "MATCH p=()-[r:V]->() RETURN p LIMIT 250"
+//            initial_cypher: "MATCH p=()-[r:A]->() RETURN p LIMIT 250"
+              initial_cypher: "MATCH (a:A)-[A]->(m:M)--(F)-->(p:P)--(D)-->(p:P) RETURN m,a,p LIMIT 250"
             };
             var viz = new NeoVis.default(config);
             viz.render();
